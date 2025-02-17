@@ -1,5 +1,5 @@
 {
-  "name": "@teclodev/swagger-ui-html-generator",
+  "name": "@teclo/swagger-ui-html-generator",
   "version": "0.1.0",
   "description": "Swagger UI html generator without dependency on libraries like swagger-ui or swagger-ui-dist.",
   "main": "dist/index.js",
