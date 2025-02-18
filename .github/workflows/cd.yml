@@ -30,17 +30,17 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Bump version and tag release
+      - name: Tag Release
         id: version
         run: |
-          NEW_VERSION=$(pnpm version patch --no-git-tag-version)
-          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+          VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git commit -am "Release $NEW_VERSION [skip ci]"
-          git tag "$NEW_VERSION"
+          git commit -am "Release $VERSION [skip ci]"
+          git tag "v$VERSION"
           git push origin main
-          git push origin "$NEW_VERSION"
+          git push origin "v$VERSION"
 
       - name: Publish
         run: npm publish --access public

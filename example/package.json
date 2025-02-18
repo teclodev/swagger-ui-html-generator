@@ -7,13 +7,10 @@
   },
   "dependencies": {
     "@teclo/swagger-ui-html-generator": "file:..",
-    "express": "^4.21.2",
-    "swagger-ui": "^5.18.3",
-    "swagger-ui-express": "^5.0.1"
+    "express": "^4.21.2"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
-    "@types/swagger-ui-express": "^4.1.7",
     "tsx": "^4.19.2"
   }
 }

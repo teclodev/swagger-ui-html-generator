@@ -1,4 +1,3 @@
-import swaggerUI from "swagger-ui-express"
 import { generateSwaggerUI } from "@teclo/swagger-ui-html-generator"
 import express from "express"
 
@@ -7,7 +6,7 @@ const doc = {
   info: {
     title: "Basic API",
     description: "Simple API documentation with basic paths",
-    version: "1.0.0",
+    version: "1.0.0"
   },
   paths: {
     "/users": {
@@ -25,15 +24,15 @@ const doc = {
                     type: "object",
                     properties: {
                       id: { type: "integer" },
-                      name: { type: "string" },
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
+                      name: { type: "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "/users/{id}": {
       get: {
@@ -45,9 +44,9 @@ const doc = {
             in: "path",
             required: true,
             schema: {
-              type: "integer",
-            },
-          },
+              type: "integer"
+            }
+          }
         ],
         responses: {
           "200": {
@@ -58,23 +57,25 @@ const doc = {
                   type: "object",
                   properties: {
                     id: { type: "integer" },
-                    name: { type: "string" },
-                  },
-                },
-              },
-            },
+                    name: { type: "string" }
+                  }
+                }
+              }
+            }
           },
           "404": {
-            description: "User not found",
-          },
-        },
-      },
-    },
-  },
+            description: "User not found"
+          }
+        }
+      }
+    }
+  }
 }
 
 const html = generateSwaggerUI({
-  swaggerDoc: doc,
+  options: {
+    spec: doc
+  }
 })
 
 const app = express()
@@ -82,7 +83,5 @@ const app = express()
 app.get("/docs", (req, res) => {
   res.set("Content-Type", "text/html").send(html)
 })
-
-app.use("/swagger-ui", swaggerUI.serve, swaggerUI.setup(doc))
 
 app.listen(3000, () => console.log("listening on port 3000"))
